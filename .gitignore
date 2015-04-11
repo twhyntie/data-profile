@@ -1,0 +1,6 @@
+#Python
+*.py[o,c]
+
+# Old files
+old/
+old.txt
