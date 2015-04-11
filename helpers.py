@@ -87,14 +87,16 @@ def make_profile_page(jds):
 
         # Add the dataset information to the table.
         t += '''
-<td>%s</td>
-<!-- <td>%s</td> -->
-<td>%d</td>
-<td>%s</td>
-<td>%s</td>
-<td>%.2f</td>
-<td>%.4f</td>
-<td>%s</td>
+      <tr>
+        <td>%s</td>
+        <!-- <td>%s</td> -->
+        <td>%d</td>
+        <td>%s</td>
+        <td>%s</td>
+        <td>%.2f</td>
+        <td>%.4f</td>
+        <td>%s</td>
+      </tr>
 ''' % \
             (run_id, jd["chip_id"], jd["n_frames"], st_str, Delta_T_str, jd["Delta_t"], jd["delta_t"], jd["file_name"])
 

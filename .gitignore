@@ -1,6 +1,9 @@
 #Python
 *.py[o,c]
 
+# Scripts.
+run.sh
+
 # Old files
 old/
 old.txt
