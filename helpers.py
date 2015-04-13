@@ -38,10 +38,11 @@ def make_profile_page(jds):
         <th>Run ID</th>
         <!-- <th>Chip ID</th> -->
         <th>Frames</th>
+        <th>Size [B]</th>
         <th>Start time</th>
-        <th>&Delta; <em>T</em> / s</th>
-        <th>&Delta; <em>t</em> / s</th>
-        <th>&delta; <em>t</em> / s</th>
+        <th>&Delta; <em>T</em> [s]</th>
+        <th>&Delta; <em>t</em> [s]</th>
+        <th>&delta; <em>t</em> [s]</th>
         <th>File name</th>
       </tr>
       {{TABLE_ROWS}}
@@ -90,15 +91,16 @@ def make_profile_page(jds):
       <tr>
         <td>%s</td>
         <!-- <td>%s</td> -->
-        <td>%d</td>
+        <td class="number">%d</td>
+        <td class="number">%d</td>
         <td>%s</td>
         <td>%s</td>
-        <td>%.2f</td>
-        <td>%.4f</td>
+        <td class="number">%.2f</td>
+        <td class="number">%.4f</td>
         <td>%s</td>
       </tr>
 ''' % \
-            (run_id, jd["chip_id"], jd["n_frames"], st_str, Delta_T_str, jd["Delta_t"], jd["delta_t"], jd["file_name"])
+            (run_id, jd["chip_id"], jd["n_frames"], jd["file_size"], st_str, Delta_T_str, jd["Delta_t"], jd["delta_t"], jd["file_name"])
 
     # Add the table contents.
     s = s.replace('{{TABLE_ROWS}}', t)
@@ -169,6 +171,10 @@ def make_css():
   td{
     background: #f5f5f5;
     font-family: Monospace;
+  }
+
+  td.number {
+    text-align:right;
   }
 
   tr:nth-child(even) td {

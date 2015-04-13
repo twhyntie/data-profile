@@ -161,6 +161,9 @@ if __name__ == "__main__":
     ## The average time between frames [s].
     Delta_t = Delta_T / (len(st_s) - 1)
 
+    ## The file size [B].
+    file_size = os.path.getsize(datapath)
+
     # Create the dataset information JSON.
     dataset_info_dict = {}
     #
@@ -177,6 +180,8 @@ if __name__ == "__main__":
     dataset_info_dict["file_name"] = dataset_file_name
     #
     dataset_info_dict["n_frames"] = n_frames
+    #
+    dataset_info_dict["file_size"] = file_size
 
     lg.info(" * Chip ID         : '%s'" % (chip_id))
     lg.info(" *")
@@ -186,6 +191,8 @@ if __name__ == "__main__":
     lg.info(" * Delta_{T} = %f [s]" % (Delta_T))
     lg.info(" *")
     lg.info(" * Delta_{t} = %f [s]" % (Delta_t))
+    lg.info(" *")
+    lg.info(" * File size = %d [B]" % (file_size))
 
     json_file_name = "%s_%s.json" % (chip_id, make_time_dir(st_s[0]))
     #
