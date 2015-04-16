@@ -9,6 +9,9 @@ See http://cernatschool.web.cern.ch for more information.
 
 """
 
+#...for the time (being).
+import time
+
 #...for handling the time strings.
 from handlers import getPixelmanTimeString
 
@@ -206,6 +209,80 @@ def make_css():
     font-size:11px;
     text-align:center;
   }
+
+/* ---------------------------*/
+/* CUSTOM                     */
+  .caption {
+    font-family:Arial, Helvetica, sans-serif;
+    text-align:center;
+  }
 '''
+
+    return s
+
+
+def make_plot_page(plot_names):
+
+    """
+    Make a plot profile page.
+
+    @param [in] plot_names Dictionary of plot names { month_id:path }.
+    """
+
+    ## The string to return for the page.
+    s = '''<!DOCTYPE html>
+<html>
+<head>
+  <!-- <link rel="stylesheet" type="text/css" href="main.css"> -->
+  <style>
+{{CSS}}
+  </style>
+</head>
+<div id="container">
+
+  <!-- Main Content -->
+  <div id="main">
+    <table>
+
+{{TABLE_ROWS}}
+    </table>
+  </div>
+
+  <!-- Footer -->
+  <div id="footer">&copy; CERN@school 2015</div>
+
+</div>
+</html>
+'''
+
+    ## The table contents (generated from the supplied dictionary).
+    t = "      <tr>"
+
+    # Loop over the plots.
+    for i, month_id in enumerate(sorted(plot_names.keys())):
+
+        # Add the image tag to the table.
+        t += "<td><img src=\"%s\" /></td>" % (plot_names[month_id])
+
+    t += "</tr>"
+
+    # Add the month and year captions.
+    t += "      <tr>"
+
+    # Loop over the plots.
+    for i, month_id in enumerate(sorted(plot_names.keys())):
+
+        ## The time of the month.
+        month_time = time.strptime(month_id, "%Y-%m")
+
+        t += "<td class=\"caption\">%s</td>" % (time.strftime("%B %Y", month_time))
+
+    t += "</tr>"
+
+    # Add the table contents.
+    s = s.replace('{{TABLE_ROWS}}', t)
+
+    # Add the CSS inline to the web page.
+    s = s.replace('{{CSS}}', make_css())
 
     return s

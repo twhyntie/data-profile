@@ -89,7 +89,7 @@ if __name__ == "__main__":
     if n_frames_to_process == -1:
         n_frames_to_process = n_frames
     #
-    if start_frame_number > n_frames_to_process:
+    if start_frame_number > dataset_chain.GetEntriesFast():
         raise IOError("* ERROR! Starting frame number greater than the number of frames.")
 
     ## The chip ID, determined from the dataset filename.
@@ -194,6 +194,7 @@ if __name__ == "__main__":
     lg.info(" *")
     lg.info(" * File size = %d [B]" % (file_size))
 
+    ## The JSON file name.
     json_file_name = "%s_%s.json" % (chip_id, make_time_dir(st_s[0]))
     #
     # Write out the frame information to a JSON file.
