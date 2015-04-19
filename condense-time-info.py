@@ -107,9 +107,12 @@ if __name__ == "__main__":
     lg.info(" * Number of frames found = %d" % (n_frames))
     lg.info(" *")
 
+    ## The run ID (from the file name).
+    #
+    # FIXME: regex check the run ID format.
     run_id = os.path.basename(datapath).split(".")[0]
 
-    ## The name of the
+    ## The name of the dataset profile binary file.
     output_file = os.path.join(outputpath, "%s.bin" % (run_id))
 
     ## The binary file to write to.
@@ -133,7 +136,9 @@ if __name__ == "__main__":
         ## The frame acquisition time.
         acq_time = chain.FramesData.GetAcqTime()
 
-        #log_acq_time = int(float("%.1f" % (math.log(acq_time, 10))))
+        # Encode the acquisition time.
+        #
+        # FIXME: make more elegant, perform error checking, etc.
         if acq_time < 0.001:
             log_acq_time = -3
         elif acq_time < 0.01:
@@ -155,7 +160,8 @@ if __name__ == "__main__":
 
         #lg.info(" * Start time, acq. time, n_pixels: %d [s], %f [s] (%d), % 10d" % (int(start_time_s), acq_time, int(log_acq_time), int(n_pixels)))
 
-        #Write the start time, log(10) of the acq. time, and number of pixels.
+        # Write the start time, log(10) of the acq. time, and number of pixels
+        # to the binary file.
         bf.write(struct.pack('IhH', int(start_time_s), int(log_acq_time), int(n_pixels)))
 
     # Tidy up.

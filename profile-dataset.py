@@ -84,7 +84,6 @@ if __name__ == "__main__":
     ## The number of frames in the file.
     n_frames = dataset_chain.GetEntriesFast()
 
-
     # Error handling.
     if n_frames_to_process == -1:
         n_frames_to_process = n_frames

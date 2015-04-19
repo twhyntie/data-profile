@@ -15,6 +15,9 @@ import time
 #...for handling the time strings.
 from handlers import getPixelmanTimeString
 
+#...for the CSS generation.
+from timestamp.pages import make_css
+
 def make_profile_page(jds):
 
     """
@@ -110,113 +113,6 @@ def make_profile_page(jds):
 
     # Add the CSS inline to the web page.
     s = s.replace('{{CSS}}', make_css())
-
-    return s
-
-
-def make_css():
-    """ Add the web page CSS - see The Woork Handbook (A. Lupetti). """
-
-    ## The CSS string to return.
-    s = '''
-/* ----------------------- */
-/* STANDARD HTML TAG RESET */
-/* ----------------------- */
-  body,
-  h1, h2, h3,
-  p, ul, li,
-  form {
-    border:0;
-    margin:0px;
-    padding:0px;
-  }
-
-/* ---------------------------- */
-/* STANDARD HTML TAG DEFINITION */
-
-  body, form, input {
-    color:#000000;
-    font-family:Arial, Helvetica, sans-serif;
-    font-size:12px;
-    color:#000000;
-  }
-
-  h1{font-size:24px;}
-
-  h2{font-size:18px;}
-
-  h3{font-size:13px;}
-
-  a:link, a:visited{
-    color:#0033CC;
-  }
-
-  table{
-    color: #222222;
-    border-collapse: collapse;
-    border-spacing: 0;
-    margin: 20px;
-    width: 90%;
-  }
-
-  td, th {
-    border: 1px solid #cccccc;
-    /* height: 30px; */
-    transition: all 0.3s;
-    padding: 5px;
-  }
-
-  th {
-    background: #e2e2e2;
-    font-weight: bold;
-  }
-
-  td{
-    background: #f5f5f5;
-    font-family: Monospace;
-  }
-
-  td.number {
-    text-align:right;
-  }
-
-  tr:nth-child(even) td {
-    background: #f5f5f5;
-  }
-
-  tr:nth-child(odd) td {
-    background: #fcfcfc;
-  }
-
-  tr td:hover {
-    background: #778877;
-    color: #ffffff;
-  }
-
-/* ----------------------------*/
-/* PAGE ELEMENTS               */
-/* ----------------------------*/
-  #container{
-    margin: 30px auto;
-    width:100%;
-  }
-
-/* ---------------------------*/
-/* FOOTER                     */
-  #footer{
-    clear:both;
-    color:#666666;
-    font-size:11px;
-    text-align:center;
-  }
-
-/* ---------------------------*/
-/* CUSTOM                     */
-  .caption {
-    font-family:Arial, Helvetica, sans-serif;
-    text-align:center;
-  }
-'''
 
     return s
 
